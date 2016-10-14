@@ -10,16 +10,20 @@ import _ from 'underscore';
 const app = express();
 const port = 5050;
 
-const mongoUri = config.mlab.mlabUri;
+const mongoUri = config.mlab.mongoUri;
+
+// mongoose.connect(mongoUri)
+// mongoose.connection.once('open', () => console.log(`Conneted to MongoDB at ${mongoUri}`))
+
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(`${__dirname}/public`))
 
 passport.use(new GoogleStrategy({
-    clientID: config.gleAuth.web.client_id,
-    clientSecret: config.gleAuth.web.client_secret,
-    callbackURL: config.gleAuth.web.cBurl
+    clientID: config.gleAuth.client_id,
+    clientSecret: config.gleAuth.client_secret,
+    callbackURL: config.gleAuth.redirect_uris
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
