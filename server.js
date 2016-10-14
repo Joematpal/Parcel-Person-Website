@@ -4,17 +4,17 @@ import cors from 'cors';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import config from './config/config.js';
-import mongoose from 'mongoose';
 import _ from 'underscore';
 
 const app = express();
 const port = 5050;
 
+//mongoose
+import mongoose from 'mongoose';
+import User from './server/features/auth/User';
 const mongoUri = config.mlab.mongoUri;
-
-// mongoose.connect(mongoUri)
-// mongoose.connection.once('open', () => console.log(`Conneted to MongoDB at ${mongoUri}`))
-
+mongoose.connect(mongoUri);
+mongoose.connection.once('open', () => console.log(`Conneted to MongoDB at ${mongoUri}`));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -26,11 +26,10 @@ passport.use(new GoogleStrategy({
     callbackURL: config.gleAuth.redirect_uris
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
+    return cb(null, profile)
   }
 ));
+
 
 passport.serializeUser(function(user, done) {
   done(null, user);
