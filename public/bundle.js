@@ -97,17 +97,6 @@
 	
 	//node_modules
 	// import 'jquery';
-	console.log(_start2.default);
-	
-	//Component Architecture
-	
-	
-	//Components
-	
-	
-	//import 'bootstrap/dist/js/bootstrap.js'
-	
-	
 	_angular2.default.module('app', [_angularUiRouter2.default])
 	// .controller('homeCtrl', ($scope)=>{
 	//   $scope.message = "Hello, World";
@@ -127,13 +116,21 @@
 	.component('menuBar', _appComponents2.default).component('userInfo', _userComponents2.default).component('accordion', _accordionComponents2.default).component('accordionPanel', _accordionPanel2.default).config(function ($stateProvider, $urlRouterProvider) {
 	  $stateProvider.state('home', {
 	    url: '/',
-	    template: '\n          <h1> Home </h1>\n          <a class="btn btn-block btn-social btn-lg btn-google-plus">\n            <i class="fa fa-google-plus"></i>\n            Sign in with Google\n          </a>\n          '
+	    template: '\n          <h1> Home </h1>\n          <a class="btn btn-block btn-social btn-lg btn-google-plus" href="/auth/google">\n            <i class="fa fa-google-plus"></i>\n            Sign in with Google\n          </a>\n          '
 	  }).state('welcome', {
 	    url: '/welcome',
 	    template: '<h1> Welcome </h1>'
 	  });
 	  $urlRouterProvider.otherwise('/');
 	});
+	
+	//Component Architecture
+	
+	
+	//Components
+	
+	
+	//import 'bootstrap/dist/js/bootstrap.js'
 
 /***/ },
 /* 2 */

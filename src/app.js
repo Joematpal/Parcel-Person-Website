@@ -17,7 +17,6 @@ import accordionPanel from "./js/components/accordionPanel.js"
 
 //Component Architecture
 import main from './js/componentStructure/start'
-console.log(main)
 
 angular
   .module('app', [uiRouter])
@@ -47,7 +46,7 @@ angular
         template:
           `
           <h1> Home </h1>
-          <a class="btn btn-block btn-social btn-lg btn-google-plus">
+          <a class="btn btn-block btn-social btn-lg btn-google-plus" href="/auth/google">
             <i class="fa fa-google-plus"></i>
             Sign in with Google
           </a>

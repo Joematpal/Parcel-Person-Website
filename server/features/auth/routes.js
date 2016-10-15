@@ -1,3 +1,4 @@
+import userCtrl from './userCtrl'
 import passport from 'passport'
 
 export default function(app) {
@@ -12,5 +13,10 @@ export default function(app) {
       // Successful authentication, redirect home.
       res.redirect('/#/welcome');
     });
+
+  app.get('/auth',
+    userCtrl.findOneUser,
+    userCtrl.saveUser
+  );
 
 }

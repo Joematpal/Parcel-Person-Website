@@ -1,7 +1,10 @@
 import express from 'express';
 import session from 'express-session';
+import { json, urlencoded }from 'body-parser';
 import cors from 'cors';
 import passport from 'passport';
+import morgan from 'morgan';
+import jwt from 'jsonwebtoken'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
 import config from './config/config.js';
 import _ from 'underscore';
@@ -16,6 +19,9 @@ const mongoUri = config.mlab.mongoUri;
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', () => console.log(`Conneted to MongoDB at ${mongoUri}`));
 
+app.use( urlencoded() );
+app.use( json() );
+app.use(session({secret: 'magicdancingcats'}))
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(`${__dirname}/public`))
