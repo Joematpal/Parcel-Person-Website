@@ -2,6 +2,7 @@ import User from './User'
 
 export default {
   findOneUser(req, res, next){
+    console.log(req.user)
     User.findOne({googleId:req.user.id}, (err, user)=>{
       if (err) return res.status(500).json(err);
       if (user) return res.status(201).json(user);
